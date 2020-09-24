@@ -31,3 +31,7 @@ input.small {
 td.fuel-savings-label {
   width: 175px;
 }
+
+.MuiExpansionPanelDetails-root {
+  flex-flow: column nowrap;
+}

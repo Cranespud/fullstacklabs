@@ -12,6 +12,10 @@ describe("<Nodes />", () => {
     checkNodeStatuses: jest.fn()
   };
 
+  const blockActions = {
+    getNodeBlocks: jest.fn()
+  };
+
   const nodes = {
     list: [
       {
@@ -29,11 +33,28 @@ describe("<Nodes />", () => {
     ]
   };
 
+  const blocks = {
+    list: [
+      {
+        url: 'https://thawing-springs-53971.herokuapp.com',
+        loading: false,
+        blocks: [],
+      },
+      {
+        url: 'https://secret-lowlands-62331.herokuapp.com',
+        loading: false,
+        blocks: [],
+      }
+    ]
+  };
+
   it("should contain <Node />", () => {
     const wrapper = shallow(
       <Nodes
         actions={actions}
         nodes={nodes}
+        blockActions={blockActions}
+        blocks={blocks}
       />
     );
 
@@ -42,7 +63,7 @@ describe("<Nodes />", () => {
 
   it("should match snapshot", () => {
     const middlewares = [thunk];
-    const store = configureMockStore(middlewares)({nodes});
+    const store = configureMockStore(middlewares)({nodes, blocks});
     const component = create(
       <Provider store={store}>
         <ConnectedNodes />

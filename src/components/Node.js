@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import NodeBlockList from './NodeBlockList';
+
 import {
   ExpansionPanel,
   ExpansionPanelSummary,
@@ -12,7 +14,7 @@ import {
 import colors from "../constants/colors";
 import Status from "./Status";
 
-const Node = ({ node, expanded, toggleNodeExpanded }) => {
+const Node = ({ node, blocks, expanded, toggleNodeExpanded }) => {
   const classes = useStyles();
   return (
     <ExpansionPanel
@@ -46,7 +48,7 @@ const Node = ({ node, expanded, toggleNodeExpanded }) => {
         </Box>
       </ExpansionPanelSummary>
       <ExpansionPanelDetails>
-        <Typography>Blocks go here</Typography>
+        <NodeBlockList blocks={blocks} />
       </ExpansionPanelDetails>
     </ExpansionPanel>
   );
@@ -104,6 +106,11 @@ Node.propTypes = {
     online: PropTypes.bool,
     name: PropTypes.string,
     loading: PropTypes.bool,
+  }).isRequired,
+  blocks: PropTypes.shape({
+    url: PropTypes.string,
+    loading: PropTypes.bool,
+    blocks: PropTypes.array,
   }).isRequired,
   expanded: PropTypes.bool,
   toggleNodeExpanded: PropTypes.func.isRequired,
