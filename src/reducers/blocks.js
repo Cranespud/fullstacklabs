@@ -17,6 +17,7 @@ export default function nodesReducer(state = initialState().blocks, action) {
           ...state.list.slice(nodeIndex + 1)
         ];
       }
+
       return {
         ...state,
         list
